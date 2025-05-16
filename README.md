@@ -2,9 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-An intelligent tool that processes images of food using OpenAI's GPT model to provide an educated guess of nutritional information. The data is then stored and visualized to help track dietary intake over time. This project is designed to showcase full-stack development capabilities, AI integration, and DevOps practices.
-
-**(Placeholder for a GIF or a couple of screenshots of the application in action)**
+An intelligent tool that processes images of food using OpenAI's GPT model to provide an educated guess of nutritional information. The data is then stored and visualized to help track dietary intake over time. 
 
 ## Table of Contents
 
