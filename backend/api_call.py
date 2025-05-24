@@ -20,7 +20,7 @@ genai.configure(api_key=api_key)
 # Use the gemini-2.0-flash-lite model which supports multimodal input
 MODEL_NAME = "gemini-2.0-flash-lite"
 # Path to your image file
-IMAGE_PATH = "img/breaded-chicken-mashed-potatos-broccoli.jpeg" # <-- CHANGE THIS TO YOUR IMAGE FILE
+IMAGE_PATH = "../img/breaded-chicken-mashed-potatos-broccoli.jpeg"  # <-- CHANGE THIS TO YOUR IMAGE FILE
 
 # Prompt asking for macronutrients as JSON
 # Being very explicit about the JSON format is important
@@ -117,7 +117,7 @@ if __name__ == "__main__":
     # Replace with the actual path to your image file
     # You can test with different food images.
     # Example: Download a picture of pizza, a salad, or a piece of fruit.
-    image_file = "img/breaded-chicken-mashed-potatos-broccoli.jpeg" # Ensure this path is correct!
+    image_file = "../img/breaded-chicken-mashed-potatos-broccoli.jpeg"  # Ensure this path is correct!
 
     result = analyze_food_image(image_file, PROMPT, MODEL_NAME)
 

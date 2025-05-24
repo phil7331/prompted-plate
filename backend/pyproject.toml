@@ -4,6 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Philipp Fluegger"]
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -11,6 +12,10 @@ openai = "^1.79.0"
 google-generativeai = "^0.6.0"
 Pillow = "^10.0"
 python-dotenv = "^1.0.0"
+fastapi = "^0.110.0" # Use a recent version
+uvicorn = {extras = ["standard"], version = "^0.29.0"} # Use a recent version
+motor = "^3.3.2" # For MongoDB async access
+pydantic = "^2.5.3" # For data validation
 
 [build-system]
 requires = ["poetry-core"]
