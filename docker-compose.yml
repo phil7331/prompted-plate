@@ -3,44 +3,34 @@ version: '3.8'
 services:
   backend:
     build: ./backend
-    container_name: my_fastapi_backend
     ports:
       - "8000:8000"
     volumes:
-      - ./backend/app:/app/app # Mount the app directory for live reloading during development
-    environment:
-      # - MONGODB_URL=mongodb://mongo:27017 # Pass MongoDB URL to backend (uncomment for DB use)
-      - WATCHFILES_FORCE_POLLING=true # Helps with hot reloading in Docker
+      - ./backend:/app
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
     depends_on:
-      - mongo # Make backend wait for mongo to be healthy (if using DB)
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload # Use reload for dev
+      - db
 
   frontend:
     build: ./frontend
-    container_name: my_vue_frontend
     ports:
-      - "8080:80" # Nginx in the container serves on port 80
+      - "3000:3000"
     volumes:
-      - ./frontend/src:/app/src # Mount src for live reloading (if dev server supports it within container)
-      - ./frontend/public:/app/public
-      # For development with Vue CLI's dev server, you might need to adjust the command
-      # and expose the Vue dev server port (e.g., 5173 or 8080 directly)
-      # and ensure the Dockerfile installs devDependencies and uses `npm run serve`.
-      # The current frontend Dockerfile is optimized for production build.
-      # For development, you might run `npm run serve` inside the container.
+      - ./frontend:/app
+      - node_modules:/app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true  # enable hot reload in Docker on some systems
+    command: npm start
     depends_on:
       - backend
 
-  mongo:
-    image: mongo:latest # Use the latest official MongoDB image
-    container_name: my_mongodb
+  db:
+    image: mongo:latest
     ports:
       - "27017:27017"
     volumes:
-      - mongodb_data:/data/db # Persist MongoDB data
-    # environment: # Optional: set root username and password
-    #   - MONGO_INITDB_ROOT_USERNAME=youruser
-    #   - MONGO_INITDB_ROOT_PASSWORD=yourpassword
+      - mongodb_data:/data/db
 
 volumes:
-  mongodb_data: # Defines the named volume for MongoDB data persistence
+  mongodb_data:
+  node_modules:
