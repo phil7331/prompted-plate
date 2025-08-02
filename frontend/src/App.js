@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './components/Card';
+import ImageUpload from './components/ImageUpload';
 
 function App() {
   const exampleDish = {
@@ -12,15 +13,19 @@ function App() {
   };
 
   return (
-    <div style={{ padding: '2rem', display: 'flex', justifyContent: 'center' }}>
-      <Card
-        name={exampleDish.name}
-        imageUrl={exampleDish.imageUrl}
-        calories={exampleDish.calories}
-        protein={exampleDish.protein}
-        fat={exampleDish.fat}
-        carbs={exampleDish.carbs}
-      />
+    <div style={{ padding: '2rem' }}>
+      <ImageUpload />
+      
+      <div style={{ marginTop: '3rem', display: 'flex', justifyContent: 'center' }}>
+        <Card
+          name={exampleDish.name}
+          imageUrl={exampleDish.imageUrl}
+          calories={exampleDish.calories}
+          protein={exampleDish.protein}
+          fat={exampleDish.fat}
+          carbs={exampleDish.carbs}
+        />
+      </div>
     </div>
   );
 }
